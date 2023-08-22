@@ -1,4 +1,9 @@
 class DragonsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+  
+  def index
+    @dragons = Dragon.all
+  end
 
   def new
     @dragon = Dragon.new

@@ -15,7 +15,7 @@
             </div>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
+          <div class="offcanvas-header mb-4">
             <% if user_signed_in? %>
               <div class="d-flex align-items-center">
                 <%= image_tag ("bilbo.webp"), class:"avatar" %>
@@ -31,6 +31,7 @@
             <% end %>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
+          <%= link_to "Please sign in to access to your dashboard", new_user_session_path, class:"nav-link text-center" %>
           <div class="offcanvas-body d-flex flex-column">
               <% if user_signed_in? %>
                 <div class="d-flex flex-column">

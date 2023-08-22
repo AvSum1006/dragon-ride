@@ -31,21 +31,27 @@
             <% end %>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body">
+          <div class="offcanvas-body d-flex flex-column">
               <% if user_signed_in? %>
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Dashboard</h5>
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item active">
-                  <a class="nav-link" href="#">See my bookings</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">See my dragons</a>
-              </li>
-              <li class="nav-item">
-                  <%= link_to (destroy_user_session_path), data: {turbo_method: :delete}, class:"nav-link" do %>
-                    Log Out <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                  <% end %>
-              </li>
+                <div class="d-flex flex-column">
+                  <h5 class="offcanvas-title mb-1 text-center" id="offcanvasNavbarLabel" style="font-weight: bold; font-size: 24px;">Your dashboard</h5>
+                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item active mt-2 mb-1">
+                      <h6 class="offcanvas-title mb-1 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Bookings</h6>
+                      <a class="nav-link" href="#">See my bookings</a>
+                    </li>
+                    <li class="nav-item mb-1">
+                      <h6 class="offcanvas-title mb-1 mt-2 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Dragons</h6>
+                      <a class="nav-link mb-1" href="#">See my dragons</a>
+                    </li>
+                    <div class="align-self-end">
+                      <li class="nav-item">
+                          <%= link_to (destroy_user_session_path), data: {turbo_method: :delete}, class:"nav-link" do %>
+                          Log Out <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                          <% end %>
+                      </li>
+                    </div>
+                  </div>
               <% end %>
                 <!--li class="nav-item"-->
                 <!--/li-->

@@ -1,0 +1,12 @@
+<h1>Rent my dragon</h1>
+
+<%= simple_form_for @dragon do |f| %>
+  <%= f.input :name %>
+  <%= f.input :age %>
+  <%= f.input :location %>
+  <%= f.input :category,collection: Dragon::CATEGORY %>
+  <%= f.input :price_per_day %>
+  <%= f.input :description %>
+  <%= f.input :seats %>
+  <%= f.submit "Create my dragon", class: "btn btn-primary rounded" %>
+<% end %>

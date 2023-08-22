@@ -44,10 +44,8 @@ user = User.new(
   password: 'password',
 )
 user.save!
-5.times do
-  rand(2..5).times do
-    create_random_dragon(user)
-  end
+rand(2..5).times do
+  create_random_dragon(user)
 end
 
 puts "#{User.all.length} users and #{Dragon.all.length} dragons have been created!"

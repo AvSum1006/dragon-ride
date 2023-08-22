@@ -15,7 +15,7 @@
             </div>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header mb-4">
+          <div class="offcanvas-header">
             <% if user_signed_in? %>
               <div class="d-flex align-items-center">
                 <%= image_tag ("bilbo.webp"), class:"avatar" %>
@@ -31,19 +31,23 @@
             <% end %>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <%= link_to "Please sign in to access to your dashboard", new_user_session_path, class:"nav-link text-center" %>
+            <% if user_signed_in? == false %>
+              <%= link_to "Please sign in to access to your dashboard", new_user_session_path, class:"nav-link text-center mt-4" %>
+              <% end %>
           <div class="offcanvas-body d-flex flex-column">
               <% if user_signed_in? %>
                 <div class="d-flex flex-column">
                   <h5 class="offcanvas-title mb-1 text-center" id="offcanvasNavbarLabel" style="font-weight: bold; font-size: 24px;">Your dashboard</h5>
                   <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <h6 class="offcanvas-title mb-1 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Bookings</h6>
                     <li class="nav-item active mt-2 mb-1">
-                      <h6 class="offcanvas-title mb-1 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Bookings</h6>
                       <a class="nav-link" href="#">See my bookings</a>
                     </li>
+                    <h6 class="offcanvas-title mb-1 mt-2 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Dragons</h6>
                     <li class="nav-item mb-1">
-                      <h6 class="offcanvas-title mb-1 mt-2 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Dragons</h6>
-                      <a class="nav-link mb-1" href="#">See my dragons</a>
+                      <%= link_to 'See my dragons', dragons_path, class: "nav-link mb-1" %>
+                    <li class="nav-item mb-1">
+                      <%= link_to 'Add a new dragon', new_dragon_path, class: "nav-link mb-1" %>
                     </li>
                     <div class="align-self-end">
                       <li class="nav-item">

@@ -1,0 +1,38 @@
+<div class="navbar bg-body-tertiary sticky-top navbar-light navbar-lewagon">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <%= image_tag ("dragon-solid.png") %>
+        </a>
+          <button class="toggle-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"   aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar">
+            <span><%= current_user.username %></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Dashboard</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <% if user_signed_in? %>
+              <li class="nav-item active">
+                  <a class="nav-link" href="#">See my bookings</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">See my dragons</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Log out <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+              </li>
+              <% else %>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Sign in</a>
+                </li>
+              <% end %>
+                <!--li class="nav-item"-->
+                <!--/li-->
+            </ul>
+          </div>
+        </div>
+      </div>
+   </div>

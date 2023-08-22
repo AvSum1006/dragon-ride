@@ -1,6 +1,9 @@
-<h1>Dragons</h1>
+<h1>All our dragons</h1>
 <% @dragons.each do |dragon| %>
+<div class="dragon-card">
   <p><%= dragon.name %></p>
-  <p><%= dragon.age %></p>
-  <p><%= dragon.seats %></p>
+  <p><%= dragon.seats %> seats</p>
+  <p><%= dragon.price_per_day %>€/day</p>
+  <p><%= dragon.location %></p>
+</div>
 <% end %>

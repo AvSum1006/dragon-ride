@@ -1,12 +1,13 @@
 class DragonsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
+  before_action :set_dragon, only: [:show, :destroy]
+
 
   def index
     @dragons = Dragon.all
   end
 
   def show
-    @dragon = Dragon.find(params[:id])
   end
 
   def new
@@ -23,7 +24,16 @@ class DragonsController < ApplicationController
     end
   end
 
+  def destroy
+    @dragon.destroy
+    redirect_to dragons_path, status: :see_other
+  end
+
   private
+
+  def set_dragon
+    @dragon = Dragon.find(params[:id])
+  end
 
   def dragon_params
     params.require(:dragon).permit(:name, :location, :category, :price_per_day, :description, :seats, :age)

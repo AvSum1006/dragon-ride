@@ -39,4 +39,8 @@
     </div>
   </div>
 
+  <hr/>
+
+  <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-danger text-light w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
 </div>

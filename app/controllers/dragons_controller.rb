@@ -26,7 +26,7 @@ class DragonsController < ApplicationController
 
   def destroy
     @dragon.destroy
-    redirect_to dragons_path, status: :see_other
+    redirect_to root_path, status: :see_other
   end
 
   private

@@ -1,13 +1,16 @@
 <div class="navbar bg-body-tertiary sticky-top navbar-light navbar-lewagon">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <%= image_tag ("dragon-solid.png") %>
         </a>
           <button class="toggle-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"   aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <div class="d-flex flex-column justify-content-center align-items-center">
-              <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar">
               <% if user_signed_in? %>
+                <%= image_tag ("bilbo.webp"), class:"avatar" %>
                 <span><%= current_user.username %></span>
+              <% else %>
+                <i class="fa-solid fa-circle-user fa-xl mt-2"></i>
+                <span class="mt-2">Connexion</span>
               <% end %>
             </div>
         </button>
@@ -15,16 +18,23 @@
           <div class="offcanvas-header">
             <% if user_signed_in? %>
               <div class="d-flex align-items-center">
-              <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar">
-              <span class="ps-3"><%= current_user.username %></span>
+                <%= image_tag ("bilbo.webp"), class:"avatar" %>
+                <span class="ps-3"><%= current_user.username %></span>
               </div>
+            <% else %>
+              <%= link_to new_user_session_path, class:"nav-link" do%>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-circle-user fa-2xl mt-2"></i>
+                  <span class="mt-2 ps-2">Sign In</span>
+                </div>
+              <% end %>
             <% end %>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
+              <% if user_signed_in? %>
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Dashboard</h5>
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <% if user_signed_in? %>
               <li class="nav-item active">
                   <a class="nav-link" href="#">See my bookings</a>
               </li>
@@ -36,10 +46,6 @@
                     Log out <i class="fa-solid fa-arrow-right-from-bracket"></i>
                   <% end %>
               </li>
-              <% else %>
-                <li class="nav-item active">
-                  <%= link_to "Sign in", new_user_session_path, class:"nav-link" %>
-                </li>
               <% end %>
                 <!--li class="nav-item"-->
                 <!--/li-->

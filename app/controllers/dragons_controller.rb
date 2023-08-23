@@ -2,6 +2,7 @@ class DragonsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :set_dragon, only: [:show, :destroy]
 
+
   def index
     @dragons = Dragon.all
   end

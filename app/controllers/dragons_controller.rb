@@ -1,6 +1,6 @@
 class DragonsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_dragon, only: [:show, :destroy]
+  before_action :set_dragon, only: %i[show edit update destroy]
 
 
   def index
@@ -21,6 +21,17 @@ class DragonsController < ApplicationController
       redirect_to dragon_path(@dragon)
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @dragon.update(dragon_params)
+      redirect_to dragon_path(@dragon)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

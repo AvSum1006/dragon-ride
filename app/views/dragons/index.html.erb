@@ -11,21 +11,21 @@
   <div class="row justify-content-center">
     <% @dragons.each do |dragon| %>
       <div class="col-12 col-sm-6 col-lg-3 my-2">
-        <div class="border rounded shadow" style="width: auto; height: 500px; object-fit: contain;">
-          <%= link_to dragon_path(dragon) do %>
+          <%= link_to dragon_path(dragon), style: "text-decoration: none; color: black" do %>
+          <div class="border rounded shadow" style="width: auto; height: 500px;">
             <%= image_tag("smaug.webp", class: "card-img-top rounded", style: "height: 300px; object-fit:cover") %>
-          <% end %>
-          <div class="d-flex flex-column justify-content-around" style="width: auto; height: 200px">
-            <div class="d-flex flex-column border-top p-2">
-              <p class="mb-0 text-wrap" style="font-weight: bold; font-size: 24px; overflow: hidden;text-overflow: ellipsis;"><%= dragon.name %></p>
-              <p class="mb-0 text-wrap" style="font-weight: bold; font-size: 18px;"><%= dragon.seats %> seats</p>
-            </div>
-            <div class="d-flex justify-content-between p-2">
-              <p class="mb-0 text-wrap"><strong>Location: </strong><br><%= dragon.location %></p>
-              <p class="mb-0 text-wrap"><strong>Price: </strong><br><%= dragon.price_per_day %>€/day</p>
+            <div class="d-flex flex-column justify-content-around px-2" style="width: auto; height: 200px">
+              <div class="d-flex flex-column p-2">
+                <p class="mb-0 text-wrap" style="font-weight: bold; font-size: 24px; overflow: hidden;text-overflow: ellipsis;"><%= dragon.name %></p>
+                <p class="mb-0 text-wrap" style="font-weight: bold; font-size: 18px;"><%= dragon.seats %> seats</p>
+              </div>
+              <div class="d-flex justify-content-between p-2">
+                <p class="mb-0 text-wrap"><strong>Location: </strong><br><%= dragon.location %></p>
+                <p class="mb-0 text-wrap"><strong>Price: </strong><br><%= dragon.price_per_day %>€/day</p>
+              </div>
             </div>
           </div>
-        </div>
+          <% end %>
       </div>
     <% end %>
   </div>

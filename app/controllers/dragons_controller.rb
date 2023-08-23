@@ -1,5 +1,5 @@
 class DragonsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_dragon, only: %i[show edit update destroy]
 
 

@@ -41,11 +41,35 @@ puts 'Creating user3 with many dragons...'
 user = User.new(
   username: 'user3',
   email: 'user3@test.com',
-  password: 'password',
+  password: 'password'
 )
 user.save!
 rand(2..5).times do
   create_random_dragon(user)
 end
 
-puts "#{User.all.length} users and #{Dragon.all.length} dragons have been created!"
+puts 'Creating bookings...'
+
+20.times do
+  start_date = Date.new(2023, rand(1..12), rand(1..20))
+  duration = rand(1..10)
+  end_date = start_date + duration
+  user = User.all.sample
+  dragon = Dragon.all.sample
+
+  booking = Booking.new(
+    start_date: start_date,
+    end_date: end_date,
+    duration: duration,
+    status: %w(Pending Confirmed).sample,
+    total_price: dragon.price_per_day * duration
+  )
+  booking.user = user
+  booking.dragon = dragon
+  booking.save!
+end
+
+puts 'Created:'
+puts "#{User.all.length} users"
+puts "#{Dragon.all.length} dragons"
+puts "#{Booking.all.length} bookings"

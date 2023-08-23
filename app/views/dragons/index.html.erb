@@ -13,7 +13,7 @@
       <div class="col-12 col-sm-6 col-lg-3 my-2">
           <%= link_to dragon_path(dragon), style: "text-decoration: none; color: black" do %>
           <div class="border rounded shadow" style="width: auto; height: 500px;">
-            <%= image_tag("smaug.webp", class: "card-img-top rounded", style: "height: 300px; object-fit:cover") %>
+            <%= cl_image_tag dragon.image.key, class: 'w-100 card-img-top rounded', style: 'height: 300px; object-fit: cover;' %>
             <div class="d-flex flex-column justify-content-around px-2" style="width: auto; height: 200px">
               <div class="d-flex flex-column p-2">
                 <p class="mb-0 text-wrap" style="font-weight: bold; font-size: 24px; overflow: hidden;text-overflow: ellipsis;"><%= dragon.name %></p>

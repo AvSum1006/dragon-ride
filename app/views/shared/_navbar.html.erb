@@ -1,8 +1,9 @@
-<div class="navbar bg-body-tertiary sticky-top navbar-light navbar-lewagon">
+<div class="navbar bg-body-tertiary sticky-top navbar-light navbar-lewagon border-bottom">
       <div class="container-fluid">
         <%= link_to (root_path), class:"navbar-brand" do %>
           <%= image_tag ("dragon-solid.png") %>
         <% end %>
+        <h2 class='font-weight-bold mb-0'>Dragon Ride</h2>
         <% if user_signed_in? %>
           <button class="toggle-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <div class="d-flex flex-column justify-content-center align-items-center">

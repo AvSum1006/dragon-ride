@@ -2,9 +2,17 @@ class DragonsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_dragon, only: %i[show edit update destroy]
 
-
   def index
-    @dragons = Dragon.all
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        dragons.name ILIKE :query
+        OR dragons.location ILIKE :query
+        OR dragons.category ILIKE :query
+      SQL
+      @dragons = Dragon.where(sql_subquery, query: "%#{params[:query]}%")
+    else
+      @dragons = Dragon.all
+    end
   end
 
   def show
@@ -48,6 +56,6 @@ class DragonsController < ApplicationController
   end
 
   def dragon_params
-    params.require(:dragon).permit(:name, :location, :category, :price_per_day, :description, :seats, :age)
+    params.require(:dragon).permit(:name, :location, :category, :price_per_day, :description, :seats, :age, :image)
   end
 end

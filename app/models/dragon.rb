@@ -1,6 +1,7 @@
 class Dragon < ApplicationRecord
   CATEGORY = %w[Wyvern Wyrm Quetzalcoatl Hydra Drake]
 
+  has_one_attached :image
   has_many :bookings
   belongs_to :user
 

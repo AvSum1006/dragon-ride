@@ -1,24 +1,21 @@
-<%= image_tag('smaug.webp', class: 'w-100', style: 'height: 300px; object-fit: cover;') %>
+<%= cl_image_tag @dragon.image.key, class: 'w-100', style: 'height: 300px; object-fit: cover;' %>
 <div class="container">
 
   <div class='mt-3 d-flex justify-content-between align-items-center'>
     <div>
       <h1 class='display-1 mb-0', style='font-weight:900'><%= @dragon.name %></h1>
-      <h5 class='mb-0'><%= @dragon.location %></h5>
-    </div>
-    <div>
-      <h1 class='mb-0 text-right' style='font-weight:900'><%= @dragon.category %></h1>
-      <h5 class='mb-0 text-right'><%= @dragon.age %> years</h5>
+      <h4 class='mb-0'><%= @dragon.location %></h4>
     </div>
   </div>
 
   <div class='d-flex mt-4 justify-content-between'>
+    <div>
+      <h3 class='mb-0 text-right' style='font-weight:900'><%= @dragon.category %></h3>
+      <h5 class='mb-0 text-right'><%= @dragon.age %> years</h5>
+    </div>
     <div class='d-flex align-items-center'>
       <%= image_tag('bilbo.webp', class: 'rounded-circle me-3', style: 'width: 50px; height: 50px; object-fit: cover;') %>
       <div>Hosted by <br><strong><%= @dragon.user.username %></strong></div>
-    </div>
-    <div class='d-flex align-items-center'>
-      <a class='btn btn-secondary'>Message host</a>
     </div>
   </div>
 
@@ -35,13 +32,16 @@
       <h2 class='mb-0'><%= @dragon.price_per_day %>€ / day</h2>
     </div>
     <div>
-      <%= link_to "Book", new_dragon_booking_path(@dragon), class:"btn btn-primary" %>
-      <%# <a class='btn btn-primary'><h2 class='mb-0 p-2'>Book</h2></a> %>
+      <% unless current_user == @dragon.user %>
+        <%= link_to "Book", new_dragon_booking_path(@dragon), class:"btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 
   <hr/>
-  <%= link_to 'Edit', edit_dragon_path(@dragon), class: 'btn btn-secondary text-light w-100 mb-3'%>
-  <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-danger text-light w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% if current_user == @dragon.user %>
+    <%= link_to 'Edit', edit_dragon_path(@dragon), class: 'btn btn-secondary text-light w-100 mb-3'%>
+    <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-danger text-light w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% end %>
 
 </div>

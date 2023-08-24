@@ -2,18 +2,28 @@
   <div class="text-center p-2">
     <h1 style="font-weight: bold">All our dragons</h1>
   </div>
-  <div class="input-group border m-1" style="border-radius: 150px;">
-    <input type="search" class="form-control border-0 bg-white" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <span class="input-group-text border-0 rounded-circle" id="search-addon">
-      <i class="fas fa-search "></i>
-    </span>
+
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control bg-white py-2 me-1",
+              placeholder: 'Search for a dragon...',
+              autofocus: true
+          %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
+
+
   <div class="row justify-content-center">
     <% @dragons.each do |dragon| %>
       <div class="col-12 col-sm-6 col-lg-3 my-2">
           <%= link_to dragon_path(dragon), style: "text-decoration: none; color: black" do %>
           <div class="border rounded shadow" style="width: auto; height: 500px;">
-            <%= image_tag("smaug.webp", class: "card-img-top rounded", style: "height: 300px; object-fit:cover") %>
+            <%= cl_image_tag dragon.image.key, class: 'card-img-top rounded', style: 'height: 300px; object-fit: cover;' %>
             <div class="d-flex flex-column justify-content-around px-2" style="width: auto; height: 200px">
               <div class="d-flex flex-column p-2">
                 <p class="mb-0 text-wrap" style="font-weight: bold; font-size: 24px; overflow: hidden;text-overflow: ellipsis;"><%= dragon.name %></p>

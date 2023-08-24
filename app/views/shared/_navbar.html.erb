@@ -1,8 +1,9 @@
-<div class="navbar bg-body-tertiary sticky-top navbar-light navbar-lewagon">
+<div class="navbar bg-body-tertiary sticky-top navbar-light navbar-lewagon border-bottom">
       <div class="container-fluid">
         <%= link_to (root_path), class:"navbar-brand" do %>
           <%= image_tag ("dragon-solid.png") %>
         <% end %>
+        <h2 class='font-weight-bold mb-0'>Dragon Ride</h2>
         <% if user_signed_in? %>
           <button class="toggle-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"   aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <div class="d-flex flex-column justify-content-center align-items-center">
@@ -23,7 +24,7 @@
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <h6 class="offcanvas-title mb-1 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Bookings</h6>
                 <li class="nav-item active mt-2 mb-1">
-                  <%= link_to 'See my bookings', bookings_path, class: "nav-link mb-1" %>
+                  <%= link_to 'See my bookings', my_bookings_path, class: "nav-link mb-1" %>
                 </li>
                 <h6 class="offcanvas-title mb-1 mt-2 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Dragons</h6>
                 <li class="nav-item mb-1">

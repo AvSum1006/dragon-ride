@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="d-flex justify-content-center align-items-center">
+    <%= link_to dragon_path(@dragon), class:"text-black" do %>
+      <i class="fa-solid fa-chevron-left fa-xl px-3"></i>
+    <% end %>
+    <h1 class="text-center my-3">New booking</h1>
+  </div>
+
+  <%= link_to dragon_path(@dragon), class:"text-decoration-none text-black" do %>
+    <div class="d-flex border">
+      <%= image_tag("smaug.webp", class: "rounded", style: "height: 150px; object-fit: cover;")%>
+      <div class="px-3 py-2 w-100">
+        <h2><%= @dragon.name %></h2>
+        <div class="d-flex flex-column">
+        <span><i class="fa-solid fa-fire-flame-curved"></i> <%= @dragon.category %></span>
+        <span><i class="fa-solid fa-location-dot"></i> <%= @dragon.location %></span>
+        <span><i class="fa-solid fa-person"></i> <%= @dragon.seats %></span>
+        <span class="text-end"> <%= @dragon.price_per_day.to_i %>€/day</span>
+      </div>
+      </div>
+    </div>
+  <% end %>
+
+  <h2 class="my-3">Configuration</h2>
+
+  <%= simple_form_for [@dragon, @booking] do |f| %>
+    <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } }%>
+    <%= f.submit "Confirm my booking", class:"btn btn-primary w-100" %>
+  <% end %>
+</div>

@@ -32,9 +32,9 @@
       <h2 class='mb-0'><%= @dragon.price_per_day %>€ / day</h2>
     </div>
     <div>
-    <% unless current_user == @dragon.user %>
-      <a class='btn btn-primary'><h4 class='mb-0 p-1'>Book</h4></a>
-    <% end %>
+      <% unless current_user == @dragon.user %>
+        <%= link_to "Book", new_dragon_booking_path(@dragon), class:"btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 

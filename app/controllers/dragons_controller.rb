@@ -26,6 +26,7 @@ class DragonsController < ApplicationController
     @dragon = Dragon.new(dragon_params)
     @dragon.user = current_user
     if @dragon.save
+      flash[:notice] = "Dragon successfully created"
       redirect_to dragon_path(@dragon)
     else
       render :new, status: :unprocessable_entity

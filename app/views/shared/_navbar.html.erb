@@ -26,7 +26,7 @@
               <ul class="navbar-nav justify-content-end flex-grow-1">
 
                 <li class="nav-item">
-                  <%= link_to 'See your Bookings', bookings_path, class: "nav-link" %>
+                  <%= link_to 'See your Bookings', my_bookings_path, class: "nav-link" %>
                 </li>
 
                 <% unless current_user.dragons.count.positive? %>
@@ -39,7 +39,7 @@
                     <%= link_to 'See your Dragons', my_dragons_path, class: "nav-link" %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to 'Manage your Bookings', bookings_path, class: "nav-link" %>
+                    <%= link_to 'Manage your Bookings', my_bookings_owner_path, class: "nav-link" %>
                   </li>
                 <% end %>
 

@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   resources :bookings, only: %i[index show destroy]
 
   get '/my-dragons', to: 'dragons#my_dragons'
-  get '/my-bookings', to: 'dragons#my_bookings'
-  get '/my-bookings-owner', to: 'dragons#my_bookings_owner'
+  get '/my-bookings', to: 'bookings#my_bookings'
+  get '/my-bookings-owner', to: 'bookings#my_bookings_owner'
 end

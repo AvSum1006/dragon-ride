@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="text-center p-2">
+    <h1 style="font-weight: bold">My Dragons</h1>
+  </div>
+  <div class="row justify-content-center">
+    <% @dragons.each do |dragon| %>
+      <%= render "card", dragon: dragon %>
+    <% end %>
+  </div>
+  <%= link_to 'Add New Dragon', new_dragon_path, class: 'btn btn-primary w-100' %>
+</div>

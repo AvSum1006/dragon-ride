@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="d-flex justify-content-center align-items-center">
+    <%= link_to bookings_path, class:"text-black" do %>
+      <i class="fa-solid fa-chevron-left fa-xl px-3"></i>
+    <% end %>
+    <h1 class="text-center my-3">Booking #00<%= @booking.id%></h1>
+  </div>
+  <%= link_to dragon_path(@booking.dragon), class:"text-decoration-none text-black" do %>
+  <div class="d-flex border">
+    <%= image_tag("smaug.webp", class: "rounded", style: "height: 150px; object-fit: cover;")%>
+    <div class="p-3 w-100">
+      <h2><%= @booking.dragon.name %></h2>
+      <div class="d-flex flex-column">
+      <span><i class="fa-solid fa-fire-flame-curved"></i> <%= @booking.dragon.category %></span>
+      <span><i class="fa-solid fa-location-dot"></i> <%= @booking.dragon.location %></span>
+      <span><i class="fa-solid fa-person"></i> <%= @booking.dragon.seats %></span>
+      <span class="text-end"> <%= @booking.dragon.price_per_day.to_i %>€/day</span>
+    </div>
+    </div>
+  </div>
+  <% end %>
+  <div class="my-3">
+    <h2 class="text-start">Booking details </h2>
+    <div class="my-3 border p-2">
+      <h3 class="border-bottom">Date</h3>
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-between">
+          <span>From: </span>
+          <span><%= @booking.start_date.strftime('%A %d, %b %Y')%></span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>To: </span>
+          <span><%= @booking.end_date.strftime('%A %d, %b %Y')%></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="my-3">
+    <h2 class="text-start">Payment Details </h2>
+    <div class="my-3 border p-2">
+      <h3 class="border-bottom">Summary</h3>
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-between">
+          <span>Status: </span>
+          <% if @booking.status == "Pending" %>
+            <span class="bg-info px-2 rounded-5"><%= @booking.status%></span>
+          <% else %>
+            <span class="bg-success px-2 rounded-5"><%= @booking.status%></span>
+          <% end %>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Day(s): </span>
+          <span><%= @booking.duration%></span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Total: </span>
+          <span><%= @booking.total_price.to_i%>€</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= link_to "Cancel", booking_path(@booking), data:{turbo_method: :delete, turbo_confirm: "Are you sure to cancel your booking ? "}, class:"w-100 btn btn-outline-danger" %>
+</div>

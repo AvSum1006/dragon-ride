@@ -21,6 +21,7 @@ class BookingsController < ApplicationController
     @booking.status = "Pending"
     duration = ((DateTime.parse(booking_params[:end_date]).to_date - DateTime.parse(booking_params[:start_date]).to_date).to_i) + 1
     @booking.duration = duration
+    @booking.total_price = (@dragon.price_per_day * duration)
     if @booking.save
       flash[:notice] = "Booking successfully created"
       redirect_to booking_path(@booking)
@@ -31,6 +32,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
+    flash[:notice] = "Booking #00#{@booking.id} successful canceled"
     redirect_to bookings_path, status: :see_other
   end
 

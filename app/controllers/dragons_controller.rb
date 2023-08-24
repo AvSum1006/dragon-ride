@@ -2,9 +2,17 @@ class DragonsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_dragon, only: %i[show edit update destroy]
 
-
   def index
-    @dragons = Dragon.all
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        dragons.name ILIKE :query
+        OR dragons.location ILIKE :query
+        OR dragons.category ILIKE :query
+      SQL
+      @dragons = Dragon.where(sql_subquery, query: "%#{params[:query]}%")
+    else
+      @dragons = Dragon.all
+    end
   end
 
   def my_dragons
@@ -22,6 +30,7 @@ class DragonsController < ApplicationController
     @dragon = Dragon.new(dragon_params)
     @dragon.user = current_user
     if @dragon.save
+      flash[:notice] = "Dragon successfully created"
       redirect_to dragon_path(@dragon)
     else
       render :new, status: :unprocessable_entity
@@ -51,6 +60,6 @@ class DragonsController < ApplicationController
   end
 
   def dragon_params
-    params.require(:dragon).permit(:name, :location, :category, :price_per_day, :description, :seats, :age)
+    params.require(:dragon).permit(:name, :location, :category, :price_per_day, :description, :seats, :age, :image)
   end
 end

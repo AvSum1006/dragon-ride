@@ -4,43 +4,53 @@
           <%= image_tag ("dragon-solid.png") %>
         <% end %>
         <% if user_signed_in? %>
-          <button class="toggle-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"   aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <button class="toggle-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <div class="d-flex flex-column justify-content-center align-items-center">
               <%= image_tag ("bilbo.webp"), class:"avatar" %>
             </div>
-        </button>
+          </button>
+
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
+
+          <div class="offcanvas-header border-bottom">
             <div class="d-flex align-items-center">
               <%= image_tag ("bilbo.webp"), class:"avatar" %>
-              <span class="ps-3"><%= current_user.username %></span>
+              <h5 class="ms-3 mb-0" style="font-weight: bold; font-size: 24px;"><%= current_user.username %></h5>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
+
           <div class="offcanvas-body d-flex flex-column">
             <div class="d-flex flex-column">
-              <h5 class="offcanvas-title mb-1 text-center" id="offcanvasNavbarLabel" style="font-weight: bold; font-size: 24px;">Your dashboard</h5>
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <h6 class="offcanvas-title mb-1 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Bookings</h6>
-                <li class="nav-item active mt-2 mb-1">
-                  <%= link_to 'See my bookings', bookings_path, class: "nav-link mb-1" %>
+
+              <ul class="navbar-nav justify-content-end flex-grow-1">
+
+                <li class="nav-item">
+                  <%= link_to 'See your Bookings', bookings_path, class: "nav-link" %>
                 </li>
-                <h6 class="offcanvas-title mb-1 mt-2 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Dragons</h6>
-                <li class="nav-item mb-1">
-                  <%= link_to 'See my dragons', root_path, class: "nav-link mb-1" %>
-                <li class="nav-item mb-1">
-                  <%= link_to 'Add a new dragon', new_dragon_path, class: "nav-link mb-1" %>
-                </li>
+
+                <% unless current_user.dragons.count.positive? %>
+                  <li class="nav-item">
+                    <%= link_to 'Rent your own Dragon', new_dragon_path, class: "nav-link" %>
+                  </li>
+                <% else %>
+                  <h6 class="offcanvas-title mt-3 border-bottom" style="font-weight: bold;" id="offcanvasNavbarLabel">Dragon Owner</h6>
+                  <li class="nav-item mt-2">
+                    <%= link_to 'See your Dragons', my_dragons_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'Manage your Bookings', bookings_path, class: "nav-link" %>
+                  </li>
+                <% end %>
+
+                <hr>
+
                 <div class="align-self-end">
                   <li class="nav-item">
-                      <%= link_to (destroy_user_session_path), data: {turbo_method: :delete}, class:"nav-link" do %>
-                      Log Out <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                      <% end %>
+                      <%= link_to 'Log Out', (destroy_user_session_path), data: {turbo_method: :delete}, class:"nav-link" %>
                   </li>
                 </div>
               </div>
-                <!--li class="nav-item"-->
-                <!--/li-->
             </ul>
           </div>
         </div>

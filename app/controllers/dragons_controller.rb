@@ -7,6 +7,10 @@ class DragonsController < ApplicationController
     @dragons = Dragon.all
   end
 
+  def my_dragons
+    @dragons = Dragon.where(user: current_user)
+  end
+
   def show
   end
 

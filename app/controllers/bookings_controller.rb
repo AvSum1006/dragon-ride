@@ -5,6 +5,15 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
   end
 
+  def my_bookings
+    @bookings = Booking.where(user: current_user)
+  end
+
+  def my_bookings_owner
+    # @bookings = Booking.joins(:dragon).where(dragons.user: current_user)
+    @bookings = Booking.joins(:dragon).where(dragons: { user: current_user })
+  end
+
   def show
   end
 

@@ -7,7 +7,7 @@
   </div>
   <%= link_to dragon_path(@booking.dragon), class:"text-decoration-none text-black" do %>
   <div class="d-flex border">
-    <%= image_tag("smaug.webp", class: "rounded", style: "height: 150px; object-fit: cover;")%>
+    <%= cl_image_tag @booking.dragon.image.key, class: "rounded", style: "height: 150px; width:150px; object-fit: cover;"%>
     <div class="px-3 py-2 w-100">
       <h2><%= @booking.dragon.name %></h2>
       <div class="d-flex flex-column">

@@ -3,7 +3,7 @@
     <%= link_to bookings_path, class:"text-black" do %>
       <i class="fa-solid fa-chevron-left fa-xl px-3"></i>
     <% end %>
-    <h1 class="text-center my-3">Booking #00<%= @booking.id%></h1>
+    <h1 class="text-center my-3">Booking #<%= @booking.id.to_s.rjust(4, '0')%></h1>
   </div>
   <%= link_to dragon_path(@booking.dragon), class:"text-decoration-none text-black" do %>
   <div class="d-flex border">

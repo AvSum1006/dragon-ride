@@ -15,6 +15,10 @@ class DragonsController < ApplicationController
     end
   end
 
+  def my_dragons
+    @dragons = Dragon.where(user: current_user)
+  end
+
   def show
     @bookings = Booking.where(dragon: @dragon)
   end

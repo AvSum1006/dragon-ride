@@ -9,7 +9,7 @@ class DragonsController < ApplicationController
         OR dragons.location ILIKE :query
         OR dragons.category ILIKE :query
       SQL
-      @dragons = Dragon.joins(:user).where(sql_subquery, query: "%#{params[:query]}%")
+      @dragons = Dragon.where(sql_subquery, query: "%#{params[:query]}%")
     else
       @dragons = Dragon.all
     end

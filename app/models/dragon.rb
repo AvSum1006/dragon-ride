@@ -5,6 +5,6 @@ class Dragon < ApplicationRecord
   has_many :bookings
   belongs_to :user
 
-  validates :name, :category, :location, :price_per_day, :description, :seats, :age, presence: true
+  validates :name, :category, :location, :price_per_day, :description, :seats, :age, :image, presence: true
   validates :category, inclusion: { in: CATEGORY }
 end

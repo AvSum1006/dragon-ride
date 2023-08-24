@@ -40,8 +40,12 @@
 
   <hr/>
   <% if current_user == @dragon.user %>
-    <%= link_to 'Edit', edit_dragon_path(@dragon), class: 'btn btn-secondary text-light w-100 mb-3'%>
-    <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-danger text-light w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    <%= link_to 'Edit', edit_dragon_path(@dragon), class: 'btn btn-secondary w-100 mb-3'%>
+    <% if @bookings.size == 0 %>
+      <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-outline-danger w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    <% else %>
+      <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-outline-danger w-100 disabled', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      <span><em>You can't delete a dragon with active bookings</em></span>
+    <% end %>
   <% end %>
-
 </div>

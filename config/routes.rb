@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :dragons, except: :index do
     resources :bookings, only: %i[new create update]
   end
-  resources :bookings, only: %i[index show destroy]
+  resources :bookings, only: %i[show destroy]
 
   get '/my-dragons', to: 'dragons#my_dragons'
   get '/my-bookings', to: 'bookings#my_bookings'

@@ -1,7 +1,5 @@
 <div class="container">
-  <div class="text-center p-2">
-    <h1 style="font-weight: bold">My Dragons</h1>
-  </div>
+  <h1 class="py-3 px-1 mb-0" style="font-weight: bold">Your Dragons</h1>
   <div class="row justify-content-center">
     <% @dragons.each do |dragon| %>
       <%= render "card", dragon: dragon %>

@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show destroy]
+  before_action :set_dragon, only: %i[new create]
 
   def index
     @bookings = Booking.all
@@ -9,12 +10,10 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @dragon = Dragon.find(params[:dragon_id])
     @booking = Booking.new
   end
 
   def create
-    @dragon = Dragon.find(params[:dragon_id])
     @booking = Booking.new(booking_params)
     @booking.dragon = @dragon
     @booking.user = current_user
@@ -23,7 +22,7 @@ class BookingsController < ApplicationController
     @booking.duration = duration
     @booking.total_price = (@dragon.price_per_day * duration)
     if @booking.save
-      flash[:notice] = "Booking successfully created"
+      flash[:notice] = "Booking ##{@booking.id.to_s.rjust(4, '0')} successfully created"
       redirect_to booking_path(@booking)
     else
       render :new, status: :unprocessable_entity
@@ -32,7 +31,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    flash[:notice] = "Booking #00#{@booking.id} successful canceled"
+    flash[:notice] = "Booking ##{@booking.id.to_s.rjust(4, '0')} successfully canceled"
     redirect_to bookings_path, status: :see_other
   end
 
@@ -40,6 +39,10 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
+  end
+
+  def set_dragon
+    @dragon = Dragon.find(params[:dragon_id])
   end
 
   def set_booking

@@ -4,12 +4,12 @@ def create_random_dragon(owner)
   dragon = Dragon.new(
     name: Faker::Movies::HowToTrainYourDragon.dragon,
     location: Faker::Fantasy::Tolkien.location,
-    category: %w[Wyvern Wyrm Quetzalcoatl Hydra Drake].sample,
+    category: Dragon::CATEGORY.sample,
     user_id: owner,
     price_per_day: rand(200..1200),
     description: Faker::Lorem.paragraphs.join,
     seats: rand(1..8),
-    age: rand(10..1000),
+    age: rand(10..1000)
   )
   dragon.user = owner
   dragon.save!
@@ -61,7 +61,7 @@ puts 'Creating bookings...'
     start_date: start_date,
     end_date: end_date,
     duration: duration,
-    status: %w(Pending Confirmed).sample,
+    status: Booking::STATUS.sample,
     total_price: dragon.price_per_day * duration
   )
   booking.user = user

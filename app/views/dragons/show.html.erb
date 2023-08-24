@@ -42,7 +42,7 @@
   <% if current_user == @dragon.user %>
     <%= link_to 'Edit', edit_dragon_path(@dragon), class: 'btn btn-secondary text-light w-100 mb-3'%>
     <% if @bookings.size == 0 %>
-      <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-danger text-light w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-outline-danger text-light w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
     <% end %>
   <% end %>
 

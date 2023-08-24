@@ -32,12 +32,16 @@
       <h2 class='mb-0'><%= @dragon.price_per_day %>€ / day</h2>
     </div>
     <div>
-      <a class='btn btn-primary'><h2 class='mb-0 p-2'>Book</h2></a>
+    <% unless current_user == @dragon.user %>
+      <a class='btn btn-primary'><h4 class='mb-0 p-1'>Book</h4></a>
+    <% end %>
     </div>
   </div>
 
   <hr/>
-  <%= link_to 'Edit', edit_dragon_path(@dragon), class: 'btn btn-secondary text-light w-100 mb-3'%>
-  <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-danger text-light w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% if current_user == @dragon.user %>
+    <%= link_to 'Edit', edit_dragon_path(@dragon), class: 'btn btn-secondary text-light w-100 mb-3'%>
+    <%= link_to 'Delete', dragon_path(@dragon), class: 'btn btn-danger text-light w-100', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% end %>
 
 </div>

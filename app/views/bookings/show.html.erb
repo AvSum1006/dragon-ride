@@ -1,7 +1,13 @@
 <div class="container">
   <div class="d-flex justify-content-center align-items-center">
-    <%= link_to bookings_path, class:"text-black" do %>
-      <i class="fa-solid fa-chevron-left fa-xl px-3"></i>
+    <% if @booking.user == current_user%>
+      <%= link_to my_bookings_path, class:"text-black" do %>
+        <i class="fa-solid fa-chevron-left fa-xl px-3"></i>
+      <% end %>
+    <% else %>
+      <%= link_to my_bookings_owner_path, class:"text-black" do %>
+        <i class="fa-solid fa-chevron-left fa-xl px-3"></i>
+      <% end %>
     <% end %>
     <h1 class="text-center my-3">Booking #<%= @booking.id.to_s.rjust(4, '0')%></h1>
   </div>

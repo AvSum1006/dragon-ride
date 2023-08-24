@@ -9,4 +9,8 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new create update]
   end
   resources :bookings, only: %i[index show destroy]
+
+  get '/my-dragons', to: 'dragons#my_dragons'
+  get '/my-bookings', to: 'bookings#my_bookings'
+  get '/my-bookings-owner', to: 'bookings#my_bookings_owner'
 end

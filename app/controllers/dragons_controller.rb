@@ -16,6 +16,7 @@ class DragonsController < ApplicationController
   end
 
   def show
+    @bookings = Booking.where(dragon: @dragon)
   end
 
   def new

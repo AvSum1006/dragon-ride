@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :dragons, except: :index do
     resources :bookings, only: %i[create update]
   end
-  resources :bookings, only: %i[index destroy]
+  resources :bookings, only: %i[index show destroy]
 end

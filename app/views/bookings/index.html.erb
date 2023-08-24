@@ -5,9 +5,9 @@
   <div class="row justify-content-center">
     <% @bookings.each do |booking| %>
       <div class="col-sm my-2">
+      <%= link_to booking_path(booking), class: "text-decoration-none text-black" do %>
         <div class="border rounded shadow" style="width: auto; height: 100%;">
           <%= image_tag("smaug.webp", class: "card-img-top rounded", style: "height: 300px; object-fit: cover;")%>
-
           <div class='d-flex m-3 justify-content-between align-items-center'>
             <div>
               <h2 class='display-1 mb-0', style='font-weight:900'><%= booking.dragon.name %></h2>
@@ -28,6 +28,7 @@
             <strong>Total: </strong><%= booking.total_price %>€
           </h3>
         </div>
+        <% end %>
       </div>
     <% end %>
   </div>

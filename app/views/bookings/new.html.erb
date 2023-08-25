@@ -8,7 +8,7 @@
 
   <%= link_to dragon_path(@dragon), class:"text-decoration-none text-black" do %>
     <div class="d-flex border">
-      <%= image_tag("smaug.webp", class: "rounded", style: "height: 150px; object-fit: cover;")%>
+      <%= cl_image_tag @dragon.image.key, class: "rounded", style: "height: 150px; object-fit: cover;" %>
       <div class="px-3 py-2 w-100">
         <h2><%= @dragon.name %></h2>
         <div class="d-flex flex-column">

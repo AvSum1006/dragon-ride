@@ -41,7 +41,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     flash[:notice] = "Booking ##{@booking.id.to_s.rjust(4, '0')} successfully canceled"
-    redirect_to bookings_path, status: :see_other
+    redirect_to dragons_path, status: :see_other
   end
 
   private

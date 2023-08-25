@@ -11,7 +11,6 @@ class BookingsController < ApplicationController
   end
 
   def my_bookings_owner
-    # @bookings = Booking.joins(:dragon).where(dragons.user: current_user)
     @bookings = Booking.joins(:dragon).where(dragons: { user: current_user })
   end
 
@@ -41,7 +40,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     flash[:notice] = "Booking ##{@booking.id.to_s.rjust(4, '0')} successfully canceled"
-    redirect_to dragons_path, status: :see_other
+    redirect_to root_path, status: :see_other
   end
 
   private

@@ -1,15 +1,17 @@
-<div class="container">
-
+<div class="container" data-controller="searchbar">
   <div class="row justify-content-center">
     <div class="col-sm-8 my-3">
       <%= form_with url: root_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
               params[:query],
               class: "form-control bg-white py-2 me-1",
+              data: { action:"click->searchbar#select", searchbar_target: "input" },
               placeholder: 'Search for a dragon to book...',
               autofocus: true
           %>
         <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <%= submit_tag "Reset", name: "", class: "btn btn-outline-secondary d-none" %>
+
       <% end %>
     </div>
   </div>
@@ -21,3 +23,5 @@
     <% end %>
   </div>
 </div>
+
+<%# action:"keyup->searchbar#submit", %>

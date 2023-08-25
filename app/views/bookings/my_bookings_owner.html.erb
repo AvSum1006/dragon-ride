@@ -1,8 +1,12 @@
 <div class="container">
   <h1 class="py-3 px-1 mb-0" style="font-weight: bold">Manage Bookings</h1>
-  <div class="row justify-content-center">
-    <% @bookings.each do |booking| %>
-      <%= render "card", booking: booking %>
-    <% end %>
+  <div class="row">
+    <% if @bookings.count.positive? %>
+        <% @bookings.each do |booking| %>
+          <%= render "card", booking: booking %>
+        <% end %>
+      <% else %>
+        <h3>No bookings found</h3>
+      <% end %>
   </div>
 </div>

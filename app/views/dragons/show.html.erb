@@ -1,57 +1,66 @@
-<%= cl_image_tag @dragon.image.key, class: 'w-100', style: 'height: 400px; object-fit: cover;' %>
-<div class="container">
-  <div class='mt-3 d-flex justify-content-between align-items-center row'>
-    <div class="col-0 col-md-6">
-      <h1 class='display-1 mb-0', style='font-weight:900'><%= @dragon.name %></h1>
-    </div>
-    <div class="col-0 col-md-2 mt-2 px-2">
-      <div class='d-flex align-items-center'>
-        <%= (@dragon.user.image.attached? ? (cl_image_tag @dragon.user.image.key, class: 'rounded-circle me-3', style: 'width: 50px; height: 50px; object-fit: cover;') : (image_tag('bilbo.webp', class: 'rounded-circle me-3', style: 'width: 50px; height: 50px; object-fit: cover;'))) %>
-        <div>Hosted by <br><strong><%= @dragon.user.username %></strong></div>
-      </div>
-    </div>
-  </div>
-  <hr/>
-  <div  class="row justify-content-between">
-    <div class="col-0 col-md-8">
-      <div class='mt-2 row justify-content-between align-items-center text-center'>
-        <div class='col-0 col-md-3'>
-          <h3 class='mb-3' style='font-weight:900'><i class="fa-solid fa-location-dot text-danger"></i> <%= @dragon.location %></h3>
-        </div>
-        <div class='col-0 col-md-3'>
-          <h4 class='mb-3 text-right' style='font-weight:600'><i class="fa-brands fa-d-and-d"></i> <%= @dragon.category %></h4>
-        </div>
-        <div class='col-0 col-md-3'>
-          <h5 class='mb-3 text-right'><%= @dragon.age %> years</h5>
-        </div>
-          <hr/>
-        </div>
-          <p class='my-1 text-justify'><%= @dragon.description %></p>
-      <hr/>
-    </div>
+<div class="container border bg-white p-0 mt-2" style='max-width: 600px;'>
+  <%= cl_image_tag @dragon.image.key, class: 'w-100', style: 'height: 300px; object-fit: cover;' %>
 
-    <div class="col-0 col-md-4 d-flex justify-content-center align-items-center mb-3">
-      <div class='mx-3 d-flex align-items-center flex-column rounded-5 bg-light py-3 px-5 shadow '>
-        <div class="text-center">
-          <h3 class='my-3 py-3'><strong><%= @dragon.price_per_day %>€</strong> / day</h3>
-        </div>
-        <div>
-          <% unless current_user == @dragon.user %>
-            <%= link_to "Book now !", new_dragon_booking_path(@dragon), class:"btn btn-primary w-100 mb-3 border-top rounded-5 px-5 shadow" %>
+  <div class="d-flex flex-wrap justify-content-between py-3 px-4">
+
+    <div class="d-flex" style='flex: 1 0 auto;'>
+
+      <div class="d-flex flex-column">
+
+        <h1><%= @dragon.name %></h1>
+        <div class="d-flex align-items-center mb-3">
+          <% if @dragon.user.image.attached? %>
+            <%= cl_image_tag @dragon.user.image.key, class: 'rounded-circle me-2', style: 'width: 40px; height: 40px; object-fit: cover;' %>
+          <% else %>
+            <div class="rounded-circle bg-secondary me-2" style='width: 40px; height: 40px;'></div>
           <% end %>
+          <p class='m-0'>
+            Hosted by <strong><%= @dragon.user.username %></strong>
+          </p>
+        </div>
+
+        <div class="d-flex">
+          <div class="d-flex flex-column align-items-end">
+            <i class="fa-solid fa-location-dot text-danger me-2" style='height:30px'></i>
+            <i class="fa-solid fa-dragon text-primary me-2" style='height:30px'></i>
+            <i class="fa-solid fa-fire text-warning me-2" style='height:30px'></i>
+          </div>
+          <div class="d-flex flex-column">
+            <h5 class='mb-0' style='height:30px'><%= @dragon.location %></h5>
+            <h5 class='mb-0' style='height:30px'><%= @dragon.category %></h5>
+            <h5 class='mb-0' style='height:30px'><%= @dragon.age %></h5>
           </div>
         </div>
+
       </div>
+
+    </div>
+
+    <div class="d-flex flex-column align-items-center border bg-light py-3 px-4" style='flex: 1 0 auto;'>
+      <h3 class='my-3 py-3'><strong><%= @dragon.price_per_day %>€</strong> / day</h3>
+      <% unless current_user == @dragon.user %>
+        <%= link_to "Book Now", new_dragon_booking_path(@dragon), class:"btn btn-primary", style:'font-size: 1.5rem'%>
+      <% end %>
+    </div>
+
+    </div>
+
+    <hr class='m-0'>
+
+    <div class='p-3'>
+      <%= @dragon.description %>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <% if current_user == @dragon.user %>
+        <%= link_to 'Edit this dragon', edit_dragon_path(@dragon), class: 'btn btn-outline-primary w-45'%>
+        <% if @bookings.size.zero? %>
+          <%= link_to 'Delete this dragon', dragon_path(@dragon), class: 'btn btn-outline-danger w-45', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        <% else %>
+          <%= link_to "You can't delete a dragon with active bookings", dragon_path(@dragon), class: 'btn btn-outline-secondary w-45 disabled', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="d-flex flex-column align-items-center">
-    <% if current_user == @dragon.user %>
-      <%= link_to 'Edit this dragon', edit_dragon_path(@dragon), class: 'btn btn-outline-primary w-100 m-2'%>
-      <% if @bookings.size == 0 %>
-        <%= link_to 'Delete this dragon', dragon_path(@dragon), class: 'btn btn-outline-danger w-100 m-2', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-      <% else %>
-        <%= link_to "You can't delete a dragon with active bookings", dragon_path(@dragon), class: 'btn btn-outline-secondary w-100 disabled m-2', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-      <% end %>
-    <% end %>
-  </div>
 </div>

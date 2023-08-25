@@ -10,9 +10,7 @@
               <% if current_user.image.attached? %>
                 <%= cl_image_tag current_user.image.key, class: 'rounded-circle', style: 'width: 50px; height: 50px; object-fit: cover;' %>
               <% else %>
-                <div class="d-flex justify-content-center align-items-center rounded-circle bg-secondary" style='width: 50px; height: 50px;'>
-                  <i class="fa-solid fa-user text-light mb-1" style='font-size: 1.5rem;'></i>
-                </div>
+                <i class="fa-solid fa-circle-user mb-1" style='font-size: 3rem;'></i>
               <% end %>
             </div>
           </button>
@@ -21,13 +19,13 @@
 
           <div class="offcanvas-header border-bottom">
             <div class="d-flex align-items-center">
-              <%= link_to edit_user_registration_path, class:"text-decoration-none text-black" do %>
+              <%= link_to edit_user_registration_path, class:"d-flex text-decoration-none text-black align-items-center" do %>
                 <% if current_user.image.attached? %>
                  <%= cl_image_tag current_user.image.key, class: 'rounded-circle', style: 'width: 50px; height: 50px; object-fit: cover;' %>
                 <% else %>
-                  <div class="rounded-circle bg-secondary" style='width: 50px; height: 50px;'></div>
+                  <i class="fa-solid fa-circle-user mb-1" style='font-size: 3rem;'></i>
                 <% end %>
-               <span class="ps-3"><%= current_user.username %></span>
+                <span class="ps-3 "><%= current_user.username %></span>
               <% end %>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

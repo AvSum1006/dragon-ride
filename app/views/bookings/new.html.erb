@@ -1,4 +1,4 @@
-<div class="container">
+<div class='container' style='max-width:600px;'>
   <div class="d-flex justify-content-center align-items-center">
     <%= link_to dragon_path(@dragon), class:"text-black" do %>
       <i class="fa-solid fa-chevron-left fa-xl px-3"></i>
@@ -7,8 +7,8 @@
   </div>
 
   <%= link_to dragon_path(@dragon), class:"text-decoration-none text-black" do %>
-    <div class="d-flex border">
-      <%= cl_image_tag @dragon.image.key, class: "rounded", style: "height: 150px; object-fit: cover;" %>
+    <div class="d-flex border mb-2">
+      <%= cl_image_tag @dragon.image.key, class: "rounded", style: "height: 150px; width:150px; object-fit: cover;"%>
       <div class="px-3 py-2 w-100">
         <h2><%= @dragon.name %></h2>
         <div class="d-flex flex-column">
@@ -20,8 +20,6 @@
       </div>
     </div>
   <% end %>
-
-  <h2 class="my-3">Configuration</h2>
 
   <%= simple_form_for [@dragon, @booking] do |f| %>
     <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>

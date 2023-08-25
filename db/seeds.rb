@@ -12,7 +12,7 @@ user1 = User.new(
   email: 'user1@test.com',
   password: 'password'
 )
-file = URI.open("https://static.wikia.nocookie.net/heroes-and-villain/images/4/43/Gimli.jpg/revision/latest?cb=201809061942547")
+file = URI.open("https://images.unsplash.com/photo-1618329075618-0d0c6ee9807b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGtuaWdodHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60")
 user1.image.attach(io: file, filename: "avatar-gimli.jpg", content_type: "image/jpeg")
 user1.save!
 
@@ -23,7 +23,7 @@ user2 = User.new(
   email: 'user2@test.com',
   password: 'password'
 )
-file = URI.open("https://static.wikia.nocookie.net/the-hobbit-lotr-trilogies/images/c/c0/Legolas2.jpg/revision/latest?cb=20190721145737")
+file = URI.open("https://images.unsplash.com/photo-1606773061828-28a5ad536bf8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8a25pZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60")
 user2.image.attach(io: file, filename: "avatar-legolas.jpg", content_type: "image/jpeg")
 user2.save!
 
@@ -37,7 +37,7 @@ dragon = Dragon.new(
   age: rand(10..1000)
 )
 dragon.user = user2
-file = URI.open("https://c4.wallpaperflare.com/wallpaper/116/853/112/fantasy-dragon-wallpaper-preview.jpg")
+file = URI.open("https://images.unsplash.com/photo-1608133012729-7c76e221449c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZHJhZ29uc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60")
 dragon.image.attach(io: file, filename: "dragon1.jpg", content_type: "image/jpeg")
 dragon.save
 
@@ -48,7 +48,7 @@ user3 = User.new(
   email: 'user3@test.com',
   password: 'password'
 )
-file = URI.open("https://static.wikia.nocookie.net/pjmidearthfilms/images/4/47/Anduril.webp/revision/latest?cb=20210121115133")
+file = URI.open("https://images.unsplash.com/photo-1600081522768-cb2e80ed4491?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8a25pZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60")
 user3.image.attach(io: file, filename: "avatar-aragorn.jpg", content_type: "image/jpeg")
 user3.save!
 
@@ -62,7 +62,7 @@ dragon = Dragon.new(
   age: rand(10..1000)
 )
 dragon.user = user3
-file = URI.open("https://as2.ftcdn.net/v2/jpg/05/55/41/29/1000_F_555412938_VPoIggmRALx1Mjfzbwr0BRm1tu2Ydqfg.jpg")
+file = URI.open("https://images.unsplash.com/photo-1548412576-d92cb3275e23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2948&q=80")
 dragon.image.attach(io: file, filename: "dragon2.jpg", content_type: "image/jpeg")
 dragon.save
 
@@ -76,7 +76,7 @@ dragon = Dragon.new(
   age: rand(10..1000)
 )
 dragon.user = user3
-file = URI.open("https://e0.pxfuel.com/wallpapers/11/227/desktop-wallpaper-purple-dragons-beautiful-purple-dragon.jpg")
+file = URI.open("https://images.unsplash.com/photo-1514922121266-75835418bbf1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGRyYWdvbnN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60")
 dragon.image.attach(io: file, filename: "dragon3.jpg", content_type: "image/jpeg")
 dragon.save
 
@@ -90,7 +90,7 @@ dragon = Dragon.new(
   age: rand(10..1000)
 )
 dragon.user = user3
-file = URI.open("https://static.wikia.nocookie.net/forgottenrealms/images/c/cd/4e_black_dragon.jpg/revision/latest?cb=20081013212948")
+file = URI.open("https://images.unsplash.com/photo-1599721765154-0f596e632cba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80")
 dragon.image.attach(io: file, filename: "dragon4.jpg", content_type: "image/jpeg")
 dragon.save
 
@@ -104,7 +104,7 @@ dragon = Dragon.new(
   age: rand(10..1000)
 )
 dragon.user = user3
-file = URI.open("http://www.milwaukeeindependent.com/wp-content/uploads/2022/09/090222_ThereBeDragons_STK_TStudio.jpg")
+file = URI.open("https://images.unsplash.com/photo-1548957537-31e688cb23b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80")
 dragon.image.attach(io: file, filename: "dragon5.jpg", content_type: "image/jpeg")
 dragon.save
 

@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
-      <%= form_with url: root_path, method: :get, class: "d-flex", data: { controller: "searchbar" } do %>
+    <div class="col-12 col-lg-8 col-xxl-6 my-3">
+      <%= form_with url: root_path, method: :get, class: "d-flex", data: { controller: "searchbar" }  do %>
+
         <%= text_field_tag :query,
               params[:query],
               class: "form-control bg-white py-2 me-1",
@@ -17,7 +18,7 @@
   </div>
 
 
-  <div class="row justify-content-center">
+  <div class="row">
     <% @dragons.each do |dragon| %>
       <%= render "card", dragon: dragon %>
     <% end %>

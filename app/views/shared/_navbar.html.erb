@@ -15,8 +15,10 @@
 
           <div class="offcanvas-header border-bottom">
             <div class="d-flex align-items-center">
+              <%= link_to edit_user_registration_path, class:"text-decoration-none text-black" do %>
               <%= (current_user.image.attached? ? (cl_image_tag current_user.image.key, class:"avatar") : (image_tag ("bilbo.webp"), class:"avatar")) %>
               <span class="ps-3"><%= current_user.username %></span>
+              <% end %>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
